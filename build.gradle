@@ -7,3 +7,12 @@ dependencies {
 repositories {
     jcenter()
 }
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'com.bulbazord.arcade.Test'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
