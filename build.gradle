@@ -1,0 +1,9 @@
+apply plugin: 'java'
+
+dependencies {
+    compile 'net.dv8tion:JDA:2.2.0_334'
+}
+
+repositories {
+    jcenter()
+}
