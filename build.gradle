@@ -10,7 +10,7 @@ repositories {
 
 task fatJar(type: Jar) {
     manifest {
-        attributes 'Main-Class': 'com.bulbazord.arcade.Test'
+        attributes 'Main-Class': 'com.bulbazord.arcade.MainController'
     }
     baseName = project.name + '-all'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
