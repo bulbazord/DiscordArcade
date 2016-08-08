@@ -8,8 +8,9 @@ public class CommandListener extends ListenerAdapter {
 
     @Override
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
-        String msg = event.getMessage().getContent();
-        if (msg.charAt(0) == '$') {
+        String[] msg = event.getMessage().getContent().split(" ");
+        if (msg[0].charAt(0) == '$') {
+            event.getChannel().sendMessage("Received command " + msg[0]);
             System.out.printf("[%s]: Command `%s` received\n", event.getChannel().getName(), msg);
         }
     }
