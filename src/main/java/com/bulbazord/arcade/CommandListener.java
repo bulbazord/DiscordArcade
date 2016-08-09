@@ -1,17 +1,33 @@
 package com.bulbazord.arcade;
 
-import net.dv8tion.jda.events.message.guild.GuildMessageReceivedEvent;
+import com.bulbazord.arcade.command.*;
+
+import java.util.HashMap;
+
+import net.dv8tion.jda.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.hooks.ListenerAdapter;
 
 
 public class CommandListener extends ListenerAdapter {
 
+    private HashMap<String, Command> commandMap;
+
+    public CommandListener() {
+        commandMap = new HashMap<>();
+        commandMap.put("$help", new HelpCommand());
+        commandMap.put("$quit", new QuitCommand());
+    }
+
     @Override
-    public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
+    public void onMessageReceived(MessageReceivedEvent event) {
         String[] msg = event.getMessage().getContent().split(" ");
         if (msg[0].charAt(0) == '$') {
-            event.getChannel().sendMessage("Received command " + msg[0]);
-            System.out.printf("[%s]: Command `%s` received\n", event.getChannel().getName(), msg);
+            Command command = commandMap.get(msg[0]);
+            if (command == null) {
+                event.getChannel().sendMessage("Error, did not recognize the command " + msg[0]);
+            } else {
+                command.executeCommand(event);
+            }
         }
     }
 }

@@ -1,5 +1,7 @@
 apply plugin: 'java'
 
+defaultTasks 'clean', 'fatjar'
+
 dependencies {
     compile 'net.dv8tion:JDA:2.2.0_334'
 }
