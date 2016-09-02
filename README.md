@@ -6,4 +6,4 @@ A chat bot to play games on Discord
 - Gradle
 - JDA (Handled by gradle)
 
-Note: Replace "TOKEN" with your bot's token so that your bot can log in!
+Note: Create a file "TOKEN" containing only the token that you need for the bot to connect.
